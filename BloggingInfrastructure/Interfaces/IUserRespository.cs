@@ -9,6 +9,8 @@ namespace BloggingInfrastructure.Interfaces
 {
     public interface IUserRespository
     {
-        string Register(InfraUser user);
+        bool Register(UserTable user);
+        bool IsUsernameTaken(string username);
+        UserTable GetUserByUsername(string username);
     }
 }

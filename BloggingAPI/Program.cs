@@ -13,11 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IPasswordHashService, PasswordHashService>();
 builder.Services.AddScoped<IDatabaseApiWrapper, DatabaseApiWrapper>();
 builder.Services.AddScoped<IUserRespository, UserRespository>();
-
-
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddControllers();
-//DataContextConfiguration.ConfigureDataContext(builder.Services, builder.Configuration);
 builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

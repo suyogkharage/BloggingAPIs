@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace BloggingDomain.Interfaces
 {
-    public interface IDatabaseApiWrapper
+    public interface ITokenService
     {
-        bool RegisterUser(User user);
-        bool CheckIfUsernameIsTaken(string username);
-        UserTable GetUser(string username);
+        string CreateToken(string username);
     }
 }

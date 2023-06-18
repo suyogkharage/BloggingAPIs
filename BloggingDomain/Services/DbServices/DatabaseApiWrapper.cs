@@ -19,10 +19,20 @@ namespace BloggingDomain.Services.DbServices
             _userRepository = userRespository;
         }
 
-        public string RegisterUser(User user)
+        public bool RegisterUser(User user)
         {
-            InfraUser infraUser = new InfraUser() { Username = user.Username, PasswordHash = user.PasswordHash, PasswordSalt = user.PasswordSalt };
+            UserTable infraUser = new UserTable() {Username = user.Username, PasswordHash = user.PasswordHash, PasswordSalt = user.PasswordSalt };
             return _userRepository.Register(infraUser);
+        }
+
+        public bool CheckIfUsernameIsTaken(string username)
+        {
+            return _userRepository.IsUsernameTaken(username);
+        }
+
+        public UserTable GetUser(string username)
+        {
+            return _userRepository.GetUserByUsername(username);
         }
     }
 }
