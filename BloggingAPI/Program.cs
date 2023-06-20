@@ -14,6 +14,7 @@ builder.Services.AddScoped<IPasswordHashService, PasswordHashService>();
 builder.Services.AddScoped<IDatabaseApiWrapper, DatabaseApiWrapper>();
 builder.Services.AddScoped<IUserRespository, UserRespository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(options =>

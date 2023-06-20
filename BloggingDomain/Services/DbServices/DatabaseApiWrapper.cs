@@ -14,9 +14,11 @@ namespace BloggingDomain.Services.DbServices
     public class DatabaseApiWrapper : IDatabaseApiWrapper
     {
         private readonly IUserRespository _userRepository;
-        public DatabaseApiWrapper(IUserRespository userRespository)
+        private readonly IBlogPostRepository _blogPostRepository;
+        public DatabaseApiWrapper(IUserRespository userRespository, IBlogPostRepository blogPostRepository)
         {
             _userRepository = userRespository;
+            _blogPostRepository = blogPostRepository;
         }
 
         public bool RegisterUser(User user)
@@ -34,5 +36,13 @@ namespace BloggingDomain.Services.DbServices
         {
             return _userRepository.GetUserByUsername(username);
         }
+
+        public void AddBlogPost(BlogPost blogPost)
+        {
+            BlogPostTable blogPostTable = new BlogPostTable() 
+            { Author = blogPost.Author, Content = blogPost.Content, PublishDate = blogPost.PublishDate, Title = blogPost.Title, ImageUrl = blogPost.ImageUrl };
+            _blogPostRepository.AddBlogPost(blogPostTable);
+        }
+
     }
 }
