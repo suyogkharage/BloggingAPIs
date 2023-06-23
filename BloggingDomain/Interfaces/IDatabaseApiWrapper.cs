@@ -13,5 +13,6 @@ namespace BloggingDomain.Interfaces
         bool RegisterUser(User user);
         bool CheckIfUsernameIsTaken(string username);
         UserTable GetUser(string username);
+        void AddBlogPost(BlogPost blogPost);
     }
 }

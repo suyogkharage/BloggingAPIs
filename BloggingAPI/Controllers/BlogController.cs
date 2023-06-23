@@ -1,4 +1,7 @@
-﻿using BloggingAPI.DTOs;
+﻿using AutoMapper;
+using BloggingAPI.DTOs;
+using BloggingDomain.Interfaces;
+using BloggingDomain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,15 +11,21 @@ namespace BloggingAPI.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        public BlogController()
+        private readonly IDatabaseApiWrapper _databaseApiWrapper;
+        private readonly IMapper _mapper;
+        public BlogController(IDatabaseApiWrapper databaseApiWrapper, IMapper mapper)
         {
-            
+            _databaseApiWrapper = databaseApiWrapper;
+            _mapper = mapper;
         }
 
-        //[HttpPost]
-        //public ActionResult AddPost(BlogPostDTO request)
-        //{
-            
-        //}
+        [HttpPost]
+        public ActionResult AddPost(BlogPostDTO request)
+        {
+            BlogPost blog = _mapper.Map<BlogPost>(request);
+            _databaseApiWrapper.AddBlogPost(blog);
+
+            return Ok();
+        }
     }
 }

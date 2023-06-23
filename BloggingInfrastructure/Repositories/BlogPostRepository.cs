@@ -20,7 +20,15 @@ namespace BloggingInfrastructure.Repositories
 
         public void AddBlogPost(BlogPostTable blogPost)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbcontext.BlogPosts.Add(blogPost);
+                _dbcontext.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         public void DeleteBlogPost(BlogPostTable blogPost)
